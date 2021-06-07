@@ -47,4 +47,28 @@ ALLOWED_HOSTS = ['192.168.33.10', '127.0.0.1']
 ```
 python manage.py runserver
 ```
+## Cómo instalar el proyecto en una máquina remota con Fabric
+
+1. Instala la librería de Fabric
+
+```
+pip install fabric
+```
+
+2. Comprueba la IP del servidor remoto y las credenciales en las líneas 11-15 del script `fabfile.py`
+
+```
+@task
+def development(ctx):
+    ctx.user = 'vagrant'
+    ctx.host = '192.168.33.10'
+    ctx.connect_kwargs = {"password": "vagrant"}
+```
+
+3. Ejecuta el script con el siguiente comando
+
+```
+fab development deploy
+```
+
 
